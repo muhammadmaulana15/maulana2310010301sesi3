@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form dan DOM Manipulation</title>
+    <style>
+        body {
+            background-color: #bd9d6d; /* Warna Hex */
+            color: white; /* Teks putih agar kontras */
+        }
+        span {
+            display: inline-block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Form Section -->
+    <form action="">
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama" placeholder="Isi nama Anda" required>
+        <br><br>
+
+        <label for="tanggal">Tanggal:</label>
+        <input type="date" id="tanggal" name="tanggal" min="2022-01-11" required>
+        <br><br>
+
+        <label for="angka">Jumlah:</label>
+        <input type="number" id="angka" name="angka" min="1000000" step="10000" required>
+        <br><br>
+
+        <label><input type="radio" name="kelamin" value="Laki-laki"> Laki-laki</label>
+        <label><input type="radio" name="kelamin" value="Perempuan"> Perempuan</label>
+        <br><br>
+
+        <input type="submit" value="Kirim">
+        <input type="reset" value="Ulangi">
+    </form>
+
+    <hr>
+
+    <!-- DOM Manipulation Section -->
+    <h1 id="judul"></h1>
+    <p id="deskripsi"></p>
+
+    <h2 id="uji_heading" onmouseover="sorot()" onmouseout="kelarSorot()">Arahkan mouse di sini!</h2>
+
+    <h2 id="uji_klik" onmousedown="tahan()" onmouseup="lepas()">Klik Saya!</h2>
+
+    <label for="input">Ketik Sesuatu:</label>
+    <input type="text" id="input" onkeyup="tiru()">
+    <span id="output"></span>
+    <br>
+    <button onclick="klik()">Klik</button>
+    <button onclick="ulangi()">Ulangi</button>
+
+    <script>
+        // Manipulasi DOM dasar
+        document.getElementById("judul").innerHTML = "Selamat Datang!";
+        document.getElementById("deskripsi").innerHTML = "Ini adalah deskripsi menggunakan JavaScript.";
+
+        // Event Handling Functions
+        function sorot() {
+            document.getElementById("uji_heading").innerHTML = "Mouse sedang di sini!";
+        }
+
+        function kelarSorot() {
+            document.getElementById("uji_heading").innerHTML = "Arahkan mouse di sini!";
+        }
+
+        function tahan() {
+            document.getElementById("uji_klik").innerHTML = "Lepaskan!";
+        }
+
+        function lepas() {
+            document.getElementById("uji_klik").innerHTML = "Klik Saya!";
+        }
+
+        function klik() {
+            const nilai = document.getElementById("input").value;
+            const output = document.getElementById("output");
+            if (nilai.trim() === "") {
+                output.innerHTML = "Inputan kosong!";
+                output.style.color = "red";
+            } else {
+                output.innerHTML = nilai;
+                output.style.color = "blue";
+            }
+        }
+
+        function ulangi() {
+            document.getElementById("input").value = "";
+            document.getElementById("output").innerHTML = "";
+        }
+
+        function tiru() {
+            document.getElementById("output").innerHTML = document.getElementById("input").value;
+        }
+    </script>
+</body>
+</html>
